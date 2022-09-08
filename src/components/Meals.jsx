@@ -1,9 +1,9 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { useGlobalContex } from "../context";
 import { BsHandThumbsUp } from "react-icons/bs";
 
 const Meals = () => {
-	const { meals, loading } = useGlobalContex();
+	const { meals, loading, selectMeal, addToFavorites } = useGlobalContex();
 
 	if (loading) {
 		return (
@@ -13,11 +13,11 @@ const Meals = () => {
 		);
 	}
 	if (meals.length < 1) {
-		<section className="section">
-			<h4 className="text-danger">
-				No meals matched your search term. Please try again.
-			</h4>
-		</section>;
+		return (
+			<section className="section">
+				<h4>No meals matched your search term. Please try again.</h4>
+			</section>
+		);
 	}
 	return (
 		<section className="section-center">
@@ -25,10 +25,17 @@ const Meals = () => {
 				const { idMeal, strMeal: title, strMealThumb: image } = singleMeal;
 				return (
 					<article key={idMeal} className="single-meal">
-						<img src={image} className="img" />
+						<img
+							src={image}
+							className="img"
+							onClick={() => selectMeal(idMeal)}
+						/>
 						<footer>
 							<h5>{title}</h5>
-							<button className="like-btn">
+							<button
+								className="like-btn"
+								onClick={() => addToFavorites(idMeal)}
+							>
 								<BsHandThumbsUp />
 							</button>
 						</footer>

@@ -356,7 +356,7 @@ ul {
 }
 
 .modal-img {
-  height: 15rem;
+  height: 17rem;
   border-top-left-radius: var(--borderRadius);
   border-top-right-radius: var(--borderRadius);
 }
